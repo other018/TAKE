@@ -1,2 +1,11 @@
 /ServletsJSPJSTL/target/
 /JSFLab/target/
+/MDBLab/MDBLab-ejb/build/
+/MDBLab/MDBLab-ejb/dist/
+/MDBLab/MDBLab-ejb/nbproject/private/
+/MDBLab/MDBLab-war/build/
+/MDBLab/MDBLab-war/dist/
+/MDBLab/MDBLab-war/nbproject/private/
+/MDBLab/build/
+/MDBLab/dist/
+/MDBLab/nbproject/private/
