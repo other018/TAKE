@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Primefaces</title>
+    </h:head>
+    <h:body>
+        <p:tabView>
+            <p:tab title="Form">
+                <h:form>
+                    <p:growl id="growl" showDetail="true" />
+                    <p:spinner id="num1" value="#{managedBean.number1}" />
+                    +
+                    <p:spinner id="num2" value="#{managedBean.number2}" />
+                    <p:commandButton ajax="true" update="sumResult time growl" action="#{managedBean.sumNumbers()}" value="Calculate" />
+                    =
+                    <!--<p:outputLabel id="sumResult" value="#{managedBean.sumResult}" />-->
+                    <h:outputText id="sumResult" value="#{managedBean.sumResult}" />
+                    <br />
+                    <!--<p:outputLabel id="time" value="#{managedBean.getTime()}" />-->
+                    <h:outputText id="time" value="#{managedBean.getTime()} "/>
+                </h:form>
+            </p:tab>
+            
+            <p:tab title="Table">
+                <p:dataTable
+                    id="studentsTable"
+                    var="student"
+                    value="#{managedBean.students}"
+                    sortMode="multiple"
+                    rows="5"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                    rowsPerPageTemplate="1, 2, 5, 10,{ShowAll|'All'}"
+                >
+                    <p:column headerText="First Name">
+                        <h:outputText value="#{student.firstName}" />
+                    </p:column>
+                    <p:column sortBy="#{student.secondName}" headerText="Second Name">
+                        <h:outputText value="#{student.secondName}" />
+                    </p:column>
+                    <p:column sortBy="#{student.average}" headerText="Average">
+                        <h:outputText value="#{student.average}" />
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+            <p:tab title="Chart">
+                <p:chart widgetVar='lineChart' type="line" model="#{managedBean.getLineModel()}" style="width: 100%; height: 500px;"/>
+                <h:form>
+                    <p:commandButton type="button" value="Reset zoom" onclick="PF('lineChart').resetZoom()"/>
+                </h:form>
+            </p:tab>
+        </p:tabView>
+        <!--
+                <h:form>
+                    <p:spinner id="minMax" min="0" max="42"/>
+                </h:form>
+        -->
+    </h:body>
+</html>
+
